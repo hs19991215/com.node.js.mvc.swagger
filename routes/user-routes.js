@@ -19,7 +19,6 @@ const userRoutes = express.Router();
 userRoutes.use(bodyParser.json());
 userRoutes.use(bodyParser.urlencoded({ extended: true }));
 
-
 /**
  * @swagger
  * /api/addUser:
