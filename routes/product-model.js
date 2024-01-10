@@ -78,6 +78,7 @@ productRoutes.post("/addProduct", addProducts);
  */
 
 productRoutes.get("/getAllProduct", getAllProducts)
+<<<<<<< HEAD
 
 /**
  * @swagger
@@ -100,4 +101,6 @@ productRoutes.get("/getAllProduct", getAllProducts)
  */
 productRoutes.get("/getProductById/:id",getProductById);
 
+=======
+>>>>>>> b6a70f6 (changes)
 export default productRoutes;
