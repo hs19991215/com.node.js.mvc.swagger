@@ -17,8 +17,7 @@ export const addUser = async (req, res, next) => {
       return res.status(401).send("Server Error");
     }
     if (result) {
-      return res.status(201).json({status:201,
-         result });
+      return res.status(201).json({ status: 201, result });
     }
   } catch (error) {
     console.log(error);
@@ -41,34 +40,61 @@ export const getUserById = async (req, res, next) => {
 };
 
 export const userLogin = async (req, res, next) => {
-    try {
-      const { email, password } = req.body;
-      const user = await userSchema.findOne({ email });
-  
-      if (!user) {
-        return res.status(400).json({ message: "Invalid email or password" });
-      }
-  
-      const isMatched = await bcrypt.compare(password, user.password);
-  
-      if (!isMatched) {
-        return res.status(400).json({ message: "Invalid email or password" });
-      }
-  
-      Jwt.sign({ user }, JWT_SECRET_KEY, (err, token) => {
-        if (token) {
-          res.status(200).json({
-            status:200,
-            user,
-            token,
-          });
-        } else {
-          console.log(err);
-          res.status(500).json({status:500, message: "Internal Server Error" });
-        }
-      });
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: "Internal Server Error" });
+  try {
+    const { email, password } = req.body;
+    const user = await userSchema.findOne({ email });
+
+    if (!user) {
+      return res.status(400).json({ message: "Invalid email or password" });
     }
-  };
+
+    const isMatched = await bcrypt.compare(password, user.password);
+
+    if (!isMatched) {
+      return res.status(400).json({ message: "Invalid email or password" });
+    }
+
+    Jwt.sign({ user }, JWT_SECRET_KEY, (err, token) => {
+      if (token) {
+        res.status(200).json({
+          status: 200,
+          user,
+          token,
+        });
+      } else {
+        console.log(err);
+        res.status(500).json({ status: 500, message: "Internal Server Error" });
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+export const updateUserDetails = async (req, res, next) => {
+  try {
+    if(req.body.dob && req.body.image && req.body.aadharCardNo){
+      const imageUrl = "";
+      const isUser = await userSchema.findOneAndUpdate(
+        {
+          _id: req.params.id,
+        },
+        {
+          image: imageUrl,
+          dob: req.body.dob,
+          aadharCardNo: req.body.aadharCardNo,
+        }
+      );
+      if (isUser) {
+        res.status(202).json(isUser);
+      } else if (!isUser) {
+        res.status(404).json({message:"User not found"});
+      }
+    }else{
+      res.status(500).json({message:"Please fill Image, DOB and Addhar number"});
+    }
+  } catch (error) {
+    console.log(error)
+  }
+};

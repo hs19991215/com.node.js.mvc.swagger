@@ -12,7 +12,7 @@ import postRoutes from "./routes/post-routes";
 import commentRoutes from "./routes/comment-routes";
 import swaggerui from "swagger-ui-express";
 import swaggerSpec from "./swaggerConfig";
-import { DB_KEY, MAIN_DB_URL, PORT } from "./config";
+import { DB_KEY, LOCAL_DB_URL, MAIN_DB_URL, PORT } from "./config";
 import productRoutes from "./routes/product-model";
 import {v2 as cloudinary} from 'cloudinary';
 import path from "path";
@@ -20,7 +20,8 @@ import multer from "multer";
 import { unlink } from "fs";
 const app = express();
 
-mongoose.connect(MAIN_DB_URL);
+// mongoose.connect(MAIN_DB_URL);// Main DB Cloud
+mongoose.connect(LOCAL_DB_URL + DB_KEY);// Local DB 
 /**
  * @swagger
  * /check:

@@ -10,6 +10,7 @@ import express from "express";
 import {
   addUser,
   getUserById,
+  updateUserDetails,
   userLogin,
 } from "../controllers/user-controllers";
 
@@ -17,6 +18,7 @@ const userRoutes = express.Router();
 
 userRoutes.use(bodyParser.json());
 userRoutes.use(bodyParser.urlencoded({ extended: true }));
+
 
 /**
  * @swagger
@@ -129,4 +131,7 @@ userRoutes.get("/getuserbyid/:id", getUserById);
  *               message: "Internal Server Error"
  */
 userRoutes.post("/userLogin", userLogin)
+
+userRoutes.post("/updateUserById/:id", updateUserDetails)
+
 export default userRoutes;

@@ -29,6 +29,19 @@ const userSchema = new Schema({
     createdAt:{
         type:Date,
         default: Date.now()
+    },
+    aadharCardNo:{
+        type:String,
+        maxlength: 12,
+        default:null
+    },
+    dob:{
+        type: String,
+        default:null
+    },
+    image:{
+        type: String,
+        default:"https://med.gov.bz/wp-content/uploads/2020/08/dummy-profile-pic.jpg"
     }
 })
 
