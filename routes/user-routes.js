@@ -10,10 +10,7 @@ import express from "express";
 import {
   addUser,
   getUserById,
-<<<<<<< HEAD
   updateUserDetails,
-=======
->>>>>>> 00357a6 (changes)
   userLogin,
 } from "../controllers/user-controllers";
 
@@ -133,10 +130,7 @@ userRoutes.get("/getuserbyid/:id", getUserById);
  *               message: "Internal Server Error"
  */
 userRoutes.post("/userLogin", userLogin)
-<<<<<<< HEAD
 
 userRoutes.post("/updateUserById/:id", updateUserDetails)
 
-=======
->>>>>>> 00357a6 (changes)
 export default userRoutes;
