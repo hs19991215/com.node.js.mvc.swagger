@@ -10,6 +10,8 @@ import express from "express";
 import {
   addUser,
   getUserById,
+  resetPasseord,
+  resetPasswordWebView,
   updateUserDetails,
   userLogin,
 } from "../controllers/user-controllers";
@@ -133,4 +135,6 @@ userRoutes.post("/userLogin", userLogin)
 
 userRoutes.post("/updateUserById/:id", updateUserDetails)
 
+userRoutes.post("/resetPassword", resetPasseord)
+userRoutes.post("/resetPasswordSmtp", resetPasswordWebView)
 export default userRoutes;
